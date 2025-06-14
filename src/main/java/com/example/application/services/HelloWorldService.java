@@ -2,11 +2,11 @@ package com.example.application.services;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import com.vaadin.hilla.Endpoint;
 import org.springframework.stereotype.Service;
 
-@BrowserCallable
+@Endpoint
 @AnonymousAllowed
-@Service
 public class HelloWorldService {
 
     public String sayHello(String name) {
@@ -15,5 +15,9 @@ public class HelloWorldService {
         } else {
             return "Hello " + name;
         }
+    }
+
+    public String hi() {
+        return "Hi";
     }
 }
