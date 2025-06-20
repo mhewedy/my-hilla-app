@@ -1,34 +1,33 @@
-import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import { useSignal } from '@vaadin/hilla-react-signals';
-import { Button, Notification, TextField } from '@vaadin/react-components';
-import { HelloWorldService } from 'Frontend/generated/endpoints.js';
+import { useRef, useState } from 'react';
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
+import { Toast } from 'primereact/toast';
+import { HelloWorldService } from 'Frontend/generated/endpoints';
 
-export const config: ViewConfig = {
-  menu: { order: 0, icon: 'line-awesome/svg/globe-solid.svg' },
-  title: 'Hello World',
-};
 
-export default function HelloWorldView() {
-  const name = useSignal('');
+export default function Index() {
+  const [name, setName] = useState('');
+  const toastRef = useRef<Toast>(null);
 
   return (
-    <>
-      <section className="flex p-m gap-m items-end">
-        <TextField
-          label="Your name"
-          onValueChanged={(e) => {
-            name.value = e.detail.value;
-          }}
-        />
-        <Button
-          onClick={async () => {
-            const serverResponse = await HelloWorldService.sayHello(name.value);
-            Notification.show(serverResponse!);
-          }}
-        >
-          Say hello
-        </Button>
-      </section>
-    </>
+    <div className="p-4 space-y-3">
+      <Toast ref={toastRef} />
+
+      <InputText value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your name" />
+
+      <Button
+        label="Say hello"
+        icon="pi pi-send"
+        onClick={async () => {
+          const serverResponse = await HelloWorldService.sayHello(name);
+          toastRef.current?.show({
+            severity: 'info',
+            summary: 'Greeting',
+            detail: serverResponse,
+            life: 0,
+          });
+        }}
+      />
+    </div>
   );
 }

@@ -22,9 +22,12 @@
     "@vaadin/vaadin-material-styles": "24.7.7",
     "@vaadin/vaadin-themable-mixin": "24.7.7",
     "@vaadin/vaadin-usage-statistics": "2.1.3",
+    "classnames": "^2.5.1",
     "construct-style-sheets-polyfill": "3.1.0",
     "date-fns": "2.29.3",
     "lit": "3.3.0",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.9.6",
     "proj4": "2.15.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -124,7 +127,7 @@
       "workbox-core": "7.3.0",
       "workbox-precaching": "7.3.0"
     },
-    "hash": "c04dfaf1b731d76e3133ffaa6a3cd0b301da3900a8f8cefb4c4d0928b2be522e"
+    "hash": "3052df6d9350d3b64de26e505af756b84663136330ea881c41188458c54d1101"
   },
   "overrides": {
     "@vaadin/bundles": "$@vaadin/bundles",
@@ -163,6 +166,9 @@
     "@vaadin/vaadin-themable-mixin": "$@vaadin/vaadin-themable-mixin",
     "@vaadin/vaadin-lumo-styles": "$@vaadin/vaadin-lumo-styles",
     "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles",
-    "react-router": "$react-router"
+    "react-router": "$react-router",
+    "classnames": "$classnames",
+    "primeicons": "$primeicons",
+    "primereact": "$primereact"
   }
 }
