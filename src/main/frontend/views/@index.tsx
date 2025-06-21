@@ -3,7 +3,7 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { HelloWorldService } from 'Frontend/generated/endpoints';
-
+import { AppError } from 'Frontend/error/appError';
 
 export default function Index() {
   const [name, setName] = useState('');
@@ -19,13 +19,24 @@ export default function Index() {
         label="Say hello"
         icon="pi pi-send"
         onClick={async () => {
-          const serverResponse = await HelloWorldService.sayHello(name);
-          toastRef.current?.show({
-            severity: 'info',
-            summary: 'Greeting',
-            detail: serverResponse,
-            life: 0,
-          });
+          try {
+            const serverResponse = await HelloWorldService.sayHello(name);
+            toastRef.current?.show({
+              severity: 'info',
+              summary: 'Greeting',
+              detail: serverResponse,
+              life: 0,
+            });
+          } catch (error) {
+            
+            toastRef.current?.show({
+              severity: 'error',
+              summary: 'Error',
+              detail: AppError.from(error).getTranslatedMessage(),
+              life: 3000,
+            });
+            return;
+          }
         }}
       />
     </div>

@@ -1,9 +1,8 @@
-package com.example.application.services;
+package com.example.application.hello;
 
+import com.example.application.error.AppException;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.hilla.BrowserCallable;
 import com.vaadin.hilla.Endpoint;
-import org.springframework.stereotype.Service;
 
 @Endpoint
 @AnonymousAllowed
@@ -11,7 +10,7 @@ public class HelloWorldService {
 
     public String sayHello(String name) {
         if (name.isEmpty()) {
-            return "Hello stranger";
+            throw new AppException("invalid.parameter.name.empty");
         } else {
             return "Hello " + name;
         }
